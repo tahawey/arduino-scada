@@ -1,0 +1,78 @@
+* {box-sizing: border-box;}
+body {  margin: 0;}
+.header {  background-color: #f1f1f1;  padding: 20px;  text-align: center;}
+.topnav {  overflow: hidden;  background-color: #333;}
+.topnav a {  float: left;  display: block;  color: #f2f2f2;  text-align: center;  padding: 14px 16px;  text-decoration: none;}
+.topnav a:hover {  background-color: #ddd;  color: blue;}
+
+ /* body {  background-color: white;}
+     Slideshow */
+  .cw-slides { cursor: pointer; }
+  .cw-slides h5 { display: none; }
+  .cw-slides h5 span { color: #fff;font-weight: 400;font-size: 0.8em; }
+  .cw-slides .cw-inventory { background-color: #303130;border-radius: 10px;color: #fff;width: 200px;text-align: center;position: absolute;z-index: 5000;top: 1em;right: 2em;transition: 0.3s; }
+  .cw-inventory h6 { padding: 0.2em 1em;font-size: 1.2em;font-weight: 700; }
+  .cw-inventory i { margin-left: 0.1em; }
+  .cw-slides:hover .cw-inventory { box-shadow: 2px 2px 4px #000;color: #fff;text-shadow: 1px 1px 2px #000;transition: 0.3s; }
+  .cw-body { padding-bottom: 3em;background: linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px, linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px, linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px, linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px, linear-gradient(90deg, #1b1b1b 10px, transparent 10px), linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);background-color: #131313;background-size: 20px 20px; }
+  .cw-welcome { background-color: rgba(0, 0, 0, 0.8);padding-top: 2em;padding-bottom: 2em;box-shadow: 0px 0px 5px #000; }
+  .cw-welcome h5 { color: #cf000f;font-size: 2.2em;font-weight: 400;text-transform: uppercase;letter-spacing: 2px; }
+  .cw-welcome h1 { color: #cf000f;font-size: 1.5em;font-weight: 400;text-transform: uppercase;letter-spacing: 2px; }
+  .cw-welcome p { color: #fff;font-size: 1.2em; }
+  .cw-welcome p a { color: #cf000f !important;font-weight: 600; }
+  .cw-welcome p a:hover { color: #999999 !important; }
+  .cw-btns { padding: 2em 0; }
+  .cw-btn { background-color: #cf000f;padding: 1em;margin: 1em 0;border-radius: 8px;transition: 0.3s; }
+  .cw-btn:hover { background-color: #fff;color: #000;padding: 1em;transition: 0.3s; }
+  .cw-btn h6 { font-size: 1.5em;font-weight: 700;color: #fff;transition: 0.3s; }
+  .cw-btn:hover h6 { color: #000;transition: 0.3s; }
+  /* XS: 440px & Up */@media (min-width: 440px) { }
+  /* SM: 768px & Up */@media (min-width: 768px) { .cw-slides h5 {   display: block; background-color: #303130; color: #fff; font-size: 1.2em; font-weight: 700; text-align: center; padding: 0.8em 1em; margin: 0; position: absolute; bottom: 0; width: 100%;}  }
+  /* MD: 992px & Up */@media (min-width: 992px) { .cw-slides h5 {   font-size: 2em;}
+    .cw-slides .cw-inventory {   background-color: #303130; border-radius: 10px; color: #fff; width: 300px; text-align: center; position: absolute; z-index: 5000; top: 1em; right: 2em;}
+    .cw-inventory h6 {   padding: 0.2em 1em; font-size: 1.8em; font-weight: 700;}
+    .cw-inventory i {   margin-left: 0.2em;}
+    .cw-btns {   padding: 2em 0;}  }
+  /* LG: 1200px & Up */@media (min-width: 1200px) { .cw-btn h6 {   font-size: 1.3em; font-weight: 700;}
+    .cw-welcome p {   color: #fff; font-size: 1.2em;}  }
+  /* XLG: 1400px & Up */@media (min-width: 1400px) { }
+  table, td, th {
+  border: 1px solid black;margin: auto;
+
+}
+
+table {
+  border-collapse: collapse;
+  width: 90%;
+}
+
+th {
+  height: 70px;
+}
+.button {
+ position: relative;
+ width: 3em;  height: 3em;  
+ border: 2px solid #000;  
+ border-radius: 2.2em;  
+ 
+ box-shadow: 0 0.5em 1em rgba(102, 0, 0, 0.3);}
+
+.on {background-image: radial-gradient(farthest-corner at 50% 20%, green,black 100%);}
+.Normal {background-image: radial-gradient(farthest-corner at 50% 20%, red,black 100%);}
+.off { background-image: radial-gradient(farthest-corner at 50% 20%, red,black 100%);}
+.Alarm { background-image: radial-gradient(farthest-corner at 50% 20%, yellow,black 100%);}
+.cool { background-image: radial-gradient(farthest-corner at 50% 20%, blue,black 100%);}
+.rec_on { border-radius: 0em;background-image: radial-gradient(farthest-corner at 50% 20%, green,black 100%);}
+.rec_off { border-radius: 0em;background-image: radial-gradient(farthest-corner at 50% 20%, red,black 100%);}
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  
+
+}
+input {  font-size: large;font-weight: bold;text-align: center; border: 0px ; width: 100%;}
+p.vertical {  writing-mode: vertical-rl; }
+.button1 {  position: relative;  width: 3em;  height: 3em;  border: 2px solid #000;  border-radius: 2.2em;  background-image: radial-gradient(farthest-corner at 50% 20%, #b30000 0%, #330000 100%);box-shadow: 0 0.5em 1em rgba(102, 0, 0, 0.3);}
+	   .button2 {  position: relative;  width: 3em;  height: 3em;  border: 2px solid #000;  border-radius: 2.2em;  background-image: radial-gradient(farthest-corner at 50% 20%, #009900 0%, #009900 100%);box-shadow: 0 0.5em 1em rgba(0, 255, 0, 0.5);}
+ input { background-color: black;color: white;  text-align: center;}

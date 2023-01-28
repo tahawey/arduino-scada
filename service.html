@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Tahawey Control Systems</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+<style>.button1 {  position: relative;  width: 3em;  height: 3em;  border: 2px solid #000;  border-radius: 2.2em;  background-image: radial-gradient(farthest-corner at 50% 20%, #b30000 0%, #330000 100%);box-shadow: 0 0.5em 1em rgba(102, 0, 0, 0.3);}
+	   .button2 {  position: relative;  width: 3em;  height: 3em;  border: 2px solid #000;  border-radius: 2.2em;  background-image: radial-gradient(farthest-corner at 50% 20%, #009900 0%, #009900 100%);box-shadow: 0 0.5em 1em rgba(0, 255, 0, 0.5);}
+ input { background-color: black;color: white;  text-align: center;}
+</style>
+</head>
+<body style="background-color:black;">
+<section class="custom page-home" data-background-image="" data-background-image-position="fixed">  <div class="container-fluid"><div class="row row-full-width"><div class="col-md-12">  
+<script src="hh.js"></script> 
+
+<button id="led123" class = "button1" > </button >
+<input id="div1" type="text" value=" ">
+</a>
+
+<p id="demo" onclick="fn1()">Click me to change my HTML content (innerHTML).</p>
+
+</div></div></div> </div></div></div>  </section>
+<script>
+function fn1(){
+m="";m+='<table style="width:100%">';m2="";let first=0;
+for (let i=0;i<10;i++){m2+="<tr>";
+for (let j=0;j<3;j++){let ii=i+1;m2+="";
+if (j==0) {	m2+='<th> <input id="reg'+ii+'" type="text" value="reg' +ii+ '">  </th>';}
+if (j==1) {	m2+='<th> <input id="bin'+ii+'" type="text" value="bin' +ii+ '">  </th>';}
+if (j==2) {	m2+='<th>   ';
+for (let k=0;k<7;k++)
+{first++;
+if (i< 5)m2+='<button id="led'+first+'" class = "button1" > '+(first)+'</button >';
+}m2+=' </th>';}}m2+="</tr>";}m+=m2;m+="</table>";
+document.getElementById("demo").innerHTML =m;
+document.getElementById("reg9").value ="uno run time";
+document.getElementById("reg10").value ="Node run time";
+}
+
+data_m=""; last_time=Date.now() ;ref_time=60*1000;leds="";
+function turn(on_off,point) {   var element = document.getElementById("led"+point);if (on_off==0) element.classList=("button1");else element.classList=("button2"); }
+function toggle(point) {   var element = document.getElementById("led"+point);   if (element.classList==("button1")) element.classList=("button2"); else element.classList=("button1");}
+function hex2bin(hex){    return ("00000000" + (parseInt(hex, 10)).toString(2)).substr(-7);}
+function led(){m=leds;for (let i = 1; i < 29; i++) turn(m[i-1],i);}
+function fill_table_value(){
+leds="";led1="";led2="";led3="";led4="";
+bin2=hex2bin(document.getElementById("reg2").value);
+bin3=hex2bin(document.getElementById("reg3").value);
+bin4=hex2bin(document.getElementById("reg4").value);
+bin5=hex2bin(document.getElementById("reg5").value);
+document.getElementById("bin2").value=bin2;
+document.getElementById("bin3").value=bin3;
+document.getElementById("bin4").value=bin4;
+document.getElementById("bin5").value=bin5;
+leds=bin2+bin3+bin4+bin5;
+document.getElementById("div1").value=leds;
+}
+
+ let mk=window.location.href;
+ let i1 = mk.indexOf("//");
+ let i2 = mk.indexOf("/", 10);
+var gateway = `ws://10.0.0.107/ws`;
+var websocket;
+window.addEventListener('load', onLoad);
+function onLoad(event) {
+	setTimeout(fn1, 300);
+    setTimeout(initWebSocket,500)
+    setTimeout(initButton,500)
+ }
+
+function initWebSocket() {
+    console.log('Trying to open a WebSocket connection...');
+    websocket = new WebSocket(gateway);
+    websocket.onopen    = onOpen;
+    websocket.onclose   = onClose;
+    websocket.onmessage = onMessage;
+}
+
+function onOpen(event) {   console.log('Connection opened');}
+function onClose(event) {console.log('Connection closed');   setTimeout(initWebSocket, 2000);}
+function onMessage(event) {
+    let data = JSON.parse(event.data);
+	let data2=data.reg2+","+data.reg3+","+data.reg4+","+data.reg5+","+data.reg6;
+	if (data_m!=data2  || last_time+ref_time <Date.now()){last_time=Date.now();	data_m=data2;  localStorage.setItem("data"+localStorage.length++, data_m +","+data.reg7+","+data.reg8+","+Date.now());}
+		document.getElementById('bin1').value=data2;
+ 	document.getElementById('reg2').value=data.reg2;
+	document.getElementById('bin2').value=hex2bin(data.reg2);
+	document.getElementById('reg3').value=data.reg3;
+	document.getElementById('bin3').value=hex2bin(data.reg3);
+	document.getElementById('reg4').value=data.reg4;
+	document.getElementById('bin4').value=hex2bin(data.reg4);
+	document.getElementById('reg5').value=data.reg5;
+	document.getElementById('bin5').value=hex2bin(data.reg5);
+	document.getElementById('reg6').value=data.reg6;
+	document.getElementById('bin6').value=hex2bin(data.reg6); 
+	document.getElementById('bin7').value=data.reg7;
+	document.getElementById('bin8').value=data.reg8;
+	document.getElementById('bin9').value=data.reg9;
+	document.getElementById('bin10').value=data.reg10;
+
+	fill_table_value();	
+	led();	
+if(document.getElementById('led123').className == "button2")document.getElementById('led123').className = "button1";else document.getElementById('led123').className = "button2"
+let text = "";for (const x in data) {  text += data[x] + ", "+x+" ";}	
+document.getElementById('bin10').value=text;
+}
+
+function initButton() {document.getElementById('toggle').addEventListener('click', onToggle);}
+function onToggle(event) {websocket.send(JSON.stringify({'action':'toggle'}));}
+
+</script>
+</body>
+</html>
+
+
+

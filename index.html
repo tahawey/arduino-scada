@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Tahawey Plc remote control</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+<script src="hh.js"></script> 
+<script src="js2.js"></script>
+<div >
+  <h1 style="color: blue">Tahawey control 01222863880 tahawey@yahoo.com 01065780822</h1>
+
+</div>
+
+
+<button id="led123" class = "button on" > </button ><input id="div1" type="text" value=" ">
+
+
+</iframe>
+<div id="table1" ></div>
+<br></br>
+<div id="table2" ></div>
+<br></br>
+<div id="table3" ></div>
+<br></br>
+<input id="ip_add" type="text" value="ws://10.0.0.103/ws">
+
+<table>
+<tr> <th><input id="sttext1" type="text" value="1"></th>  <th><input id="sttext2" type="text" value="2"></th>  <th><input id="sttext3" type="text" value="3"></th>  <th><input id="sttext4" type="text" value="4"></th>  <th><input id="sttext5" type="text" value="5"></th>  <td><input id="sttext6" type="text" value="6"></th></tr>
+<tr><th><button id="led111"  class = "button off" > 	</button ><th><button id="led222"  class = "button off" > 	</button ><th><button id="led333"  class = "button off" > 	</button ><th><button id="led444"  class = "button off" > 	</button ><th><button id="led555"  class = "button off" > 	</button ><th><button id="led666"  class = "button off" > 	</button ></th></tr>
+<tr><th><button id="on1"  onclick="onOutput(1)" > On</button ><button id="off1" onclick="offOutput(1)" > Off</button ></th><th><button id="on2"   onclick="onOutput(2)"  > On</button ><button id="off2" onclick="offOutput(2)"> Off</button ></th><th><button id="on3"    onclick="onOutput(3)" > On</button ><button id="off3"onclick="offOutput(3)" > Off</button ></th><th><button id="on4"   onclick="onOutput(4)"  > On</button ><button id="off4" onclick="offOutput(4)"> Off</button ></th><th><button id="on5"   onclick="onOutput(5)"  > On</button ><button id="off5" onclick="offOutput(5)"> Off</button ></th><th><button id="on6"   onclick="onOutput(6)"  > On</button ><button id="off6" onclick="offOutput(6)"> Off</button ></tr></tr>
+</table>
+<script>
+var vr="";var old_vr="";
+var counter=1;
+let output=0;
+temp1="0.0";temp2="0.0";
+const myTimeout = setTimeout(fn1, 300);
+function tt(){for (j=1;j<20;j++){document.getElementById("button"+j).classList=("button Alarm");}}
+setTimeout(tt, 400);
+
+let row=[
+[1,"Humidity ","on","off","22"],
+[2,"Temprature ","on","off","23"],
+[3,"Selector","on","off","24"],
+[4,"Status","on","off","25"],
+[5,"Heater","on","off","26"],
+[6,"Coil fan","on","off","27"],
+[7,"Alarm","Alarm","Normal","28"],
+[8,"A/status","on","off","29"],
+[9,"A/Overload fault ","Alarm","Normal","30"],
+[10,"A/Condenser fault","Alarm","Normal","31"],
+[11,"A/Oil fault","Alarm","Normal","32"],
+[12,"B/status","on","off","33"],
+[13,"B/Overload fault ","Alarm","Normal","34"],
+[14,"B/Condenser fault","Alarm","Normal","35"],
+[15,"B/Oil fault","Alarm","Normal","36"],
+[16,"C/status","on","off","37"],
+[17,"C/Overload fault ","Alarm","Normal","38"],
+[18,"C/Condenser fault","Alarm","Normal","39"],
+[19,"C/Oil fault","Alarm","Normal","40"],
+
+];
+
+function table1(){
+b='<table>';
+b+='<tr> <th rowspan="8" ><div id="divtah" ></th></tr>';
+
+for (j=0;j<7;j++){
+b+='<tr >';
+b+='<th width="5%">';b+='<input id="text'+j+'" type="text" value="'+row[j][0]+'">';
+b+='<th>';b+='<input id="text'+(2*10)+'" type="text" value="'+row[j][1]+'">';b+='</th>';
+b+='<th>';b+='<input id="point'+row[j][0]+'" type="text" value="'+"?"+'">';b+='</th>';
+b+='<th width="10%"> ';b+='<button id="button'+row[j][0]+'" type= "button" class="button '+row[j][2]+'">';b+='</th>';
+if (j==0)b+='<th rowspan="8"><div id="divtah2" ></th>';
+
+b+='</tr>';}
+b+='</table>';
+document.getElementById("table1").innerHTML = b;
+
+}
+function table2(){
+
+b='<table>';
+for (i=0;i<3;i++){
+b+='<th colspan="4"><img id="imgid'+(i+1)+'" src="img1.jpg" ></th>';
+}
+for (j=7;j<11;j++){
+b+='<tr>';
+for (i=0;i<3;i++){
+b+='<th width="5%">';b+='<input id="text'+0+'" type="text" value="'+row[j+(i*4)][0]+'">';
+b+='<th ">';b+='<input id="text'+(2*10)+'" type="text" value="'+row[j+(i*4)][1]+'">';b+='</th>';
+b+='<th th width="8%">';b+='<input id="point'+(j+1+(i*4))+'" type="text" value="'+"?"+'">';b+='</th>';
+b+='<th width="5%"> ';b+='<button id="button'+(j+1+(i*4))+'" type="button" class="button '+row[j+(i*4)][2]+'">';b+='</th>';
+}b+='</tr>';}b+='</table>';document.getElementById("table2").innerHTML = b;
+}
+function table3(){
+b='<table>';
+for (i=1;i<7;i++){
+b+='<tr>';
+b+='<th width="5%"><input id="text33"'+i+' type="text" value="'+i+'">';b+='</th>';
+b+='<th><button id="button33"'+i+' type="text" class="button off">';b+='</th>';
+b+='<th ><input id="text33"'+i+' type="text" value="'+"function"+'">';b+='</th>';
+b+='<th><button id="button44"'+i+' type="text" class="button rec_on">';b+='</th>';
+b+='<th><button id="button44"'+i+' type="text" class="button rec_off">';b+='</th>';
+b+='</tr>';
+}
+b+='</table>';document.getElementById("table3").innerHTML = b;}
+function fn1(){
+table1();table2();
+
+m=window.location.href;
+ let i1 = m.indexOf("//");
+ let i2 = m.indexOf("/", 10);
+//var gateway = "ws:"+m.substring(i1,16)+"/ws";
+
+//document.getElementById("khaled").value = "ws:"+m.substring(i1,16)+"/ws";//table3();
+var m;
+m1='data-highlights='+"'"+'[{ "from": 0, "to": 50, "color": "rgba(10,255,255,.15)" },{ "from": 50, "to": 70, "color": "rgba(0,255,0,.15)" },{ "from": 70, "to": 100, "color": "rgba(255,0,0,.15)" }]'+"'"+ '></canvas>';
+m2='data-highlights='+"'"+'[{ "from": -30, "to": -10, "color": "rgba(10,255,255,.15)" },{ "from": -10, "to": 10, "color": "rgba(0,255,0,.15)" },{ "from": 10, "to": 30, "color": "rgba(255,0,0,.15)" }]'+"'"+ '></canvas>';
+
+id1='<canvas id="gauge2" data-units="%" data-title="Humidity الرطوبة" data-value="0" data-min-value="0" data-max-value="100" data-major-ticks="0,10,20,30,40,50,60,70,80,90,100"' ;;
+id2='<canvas id="gauge3" data-units="°C" data-title="Temperature الحرارة" data-value="-7" data-min-value="-30" data-max-value="30" data-major-ticks="-30,-20,-10,0,10,20,30"';
+m3='height= "20%" width="20%" data-type="radial-gauge" data-width=200 data-height=200  data-animate-on-init="true" data-animated-value="true"   data-minor-ticks="10" data-stroke-ticks="true" data-color-plate="transparent" data-color-needle-start="rgba(240, 128, 128, 1)" data-color-needle-end="rgba(255, 160, 122, .9)" data-value-box="true" data-animation-rule="bounce" data-animation-duration="500" data-border-outer-width="1" data-border-middle-width="1" data-border-inner-width="1"' ;
+
+//m3+=m2;
+document.getElementById("divtah").innerHTML = id1+m3+m1;
+document.getElementById("divtah2").innerHTML = id2+m3+m2;
+//setInterval(onMessage(), 100);
+//onMessage();
+  setInterval(onMessage, 1000);
+}
+
+function fn2(v){var gauge = document.gauges.get('gauge2');gauge.value = v;}
+function fn3(v){var gauge = document.gauges.get('gauge3');gauge.value = v;}
+function set_gauge(name,value)
+{
+document.gauges.get(name).value = value;
+}
+
+leds="";
+text3="";text3_old="";
+const m = [];
+
+function turn(on_off,point) {   var element = document.getElementById("led"+point);if (on_off==0) element.classList=("button on");else element.classList=("button off"); }
+function toggle(point) {   var element = document.getElementById("led"+point);   if (element.classList==("button on")) element.classList=("button off"); else element.classList=("button on");}
+ let mk=window.location.href;
+ let i1 = mk.indexOf("//");
+ let i2 = mk.indexOf("/", 10);
+//var gateway = "ws:"+mk.substring(i1,i2)+"/ws";
+var gateway="ws://192.168.1.38/ws";
+console.log(gateway);
+//if(gateway="ws://e/ws") gateway = document.getElementById("ip_add").value;
+var websocket;
+
+window.addEventListener('load', onLoad);
+
+function onLoad(event) {
+
+ //   initWebSocket();
+  //  initButton();
+
+}
+
+function initWebSocket() {
+  //onMessage();
+
+}
+
+function onMessage() {
+counter++;
+if (counter>64)counter=0;
+  //  let data = JSON.parse(event.data);
+	//console.log(data);
+	//{status: 'on', reg1: 'inputs', reg2: '8', reg3: '0', reg4: '0', …}
+	let data = JSON.parse('{"status": '+counter+', "reg1": '+counter+', "reg2": '+counter+', "reg3": '+counter+', "reg4": '+counter+', "reg5": '+counter+', "reg6": '+counter+', "reg7": '+counter+', "reg8": '+counter+'}');
+	output=data.reg6;
+    if(document.getElementById('led123').className == "button on")document.getElementById('led123').className = "button off";else document.getElementById('led123').className = "button on"
+let text = "";for (const x in data) {  text += x + ", ";}	
+	var co=0;
+let text2 = "";for (const x in data) { m[co]=data[x]; co++;text2 += data[x] + ", ";}		
+	console.log(text2);
+ text3 = "1111111111111111111111";for (let x=2;x<8;x++) {  text3 +=reverseString(hex2bin(m[x]));}		
+console.log(text3);
+if (text3 != text3_old){text3_old=text3;check_points();}
+temp2=data["reg7"] ;		
+temp1=data["reg8"] ;	
+document.getElementById("point1").value=temp1
+document.getElementById("point2").value=temp2
+
+set_gauge('gauge2',data["reg8"] );set_gauge('gauge3',data["reg7"] );
+//for (k=1;k<9;k++){d='reg'+k+''; console.log('"reg'+k+'"');console.log (data[d]);}
+//vr="";
+vr='http://127.0.0.1/dht.php?';
+
+for (k=1;k<6;k++){d='reg'+(k+1)+'';vr+='reg'+k+'='; vr+= data[d]; vr+="&";}
+vr+="temp="+data["reg7"];vr+="&hum="+data["reg8"];
+console.log(vr);
+if (vr!=old_vr){
+//document.getElementById("ifram1").src=vr;old_vr=vr;//console.log (vr);
+
+
+
+
+}
+}
+function get_trip(x){d=parseInt(row[x-1][4]); if (text3[d]=='0') return 0;else return 1;}
+function check_points(){
+
+	for (j=1;j<20;j++){
+	po=row[j-1][4];	//v=m[po];	//console.log (text3[po]);
+	//console.log (text3[po]);
+	if (text3[po]=='0')	{document.getElementById("button"+j).className=("button "+row[j-1][3]);document.getElementById("point"+j).value=row[j-1][3];}//row[j-1][1]);}
+	else {document.getElementById("button"+j).className=("button "+row[j-1][2]);document.getElementById("point"+j).value=row[j-1][2];}//row[j-1][2]);}
+	
+	}
+trip_all=[7];
+trip_a=[9,10,11];
+trip_b=[13,14,15];
+trip_c=[17,18,19];
+trip_a_cout=0;trip_b_cout=0;trip_c_cout=0;
+
+for ( i=0;i<3;i++){trip_a_cout+=get_trip(trip_a[i]);}
+for ( i=0;i<3;i++){trip_b_cout+=get_trip(trip_b[i]);}
+for ( i=0;i<3;i++){trip_c_cout+=get_trip(trip_c[i]);}
+trip_a_cout+=get_trip(7);
+trip_b_cout+=get_trip(7);
+trip_c_cout+=get_trip(7);
+
+for (i=0;i<3;i++){
+g="";w="";tripp=0;
+if (i==0){g=text3[29];w="imgid"+1;tripp=trip_a_cout;}if (i==1){g=text3[33];w="imgid"+2;tripp=trip_b_cout;}if (i==2){g=text3[37];w="imgid"+3;tripp=trip_c_cout;}
+if((g=='0') && (tripp>0))document.getElementById(w).src = "img5.jpg";
+if((g=='1') && (tripp>0))document.getElementById(w).src = "img2.jpg";
+if((g=='0') && (tripp<1))document.getElementById(w).src = "img1.jpg";
+if((g=='1') && (tripp<1))document.getElementById(w).src = "img4.jpg";
+//console.log(w);
+}
+
+
+}
+function reverseString(s){return s.split("").reverse().join("");}
+function initButton() { document.getElementById('toggle').addEventListener('click', onToggle);   }
+function onToggle(event) {    websocket.send(JSON.stringify({'action':'toggle'}));}
+function hex2bin(hex){    return ("00000000" + (parseInt(hex, 10)).toString(2)).substr(-7);}
+function onOutput(i) { act={'action':'on'+i};   websocket.send(JSON.stringify(act));console.log( act);console.log({'action':'on1'});}
+function offOutput(i) { act={'action':'off'+i};   websocket.send(JSON.stringify(act));console.log( act);}
+
+
+</script>
+</body>
+</html>
